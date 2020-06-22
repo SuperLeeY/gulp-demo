@@ -1,0 +1,1 @@
+var data=["王者荣耀"];data.map(function(a){console.log(a)});
