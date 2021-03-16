@@ -3,6 +3,7 @@ const uglify = require('gulp-uglify');
 const minifyCss = require('gulp-minify-css');
 const clean = require('gulp-clean');
 const babel = require('gulp-babel');
+const packageInfo = require('./package.json');
 
 //clean
 gulp.task('clean', function(done){
@@ -25,7 +26,11 @@ gulp.task('minJs', function(done){
                 "sourceType": "script"
             }]
         }))
-        .pipe(uglify())
+        .pipe(uglify({
+            output: {
+                preamble: "/* version:" + packageInfo.version + " */"
+            }
+        }))
         .pipe(gulp.dest('dist/js'));
 });
 
